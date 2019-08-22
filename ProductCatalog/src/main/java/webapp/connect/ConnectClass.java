@@ -19,20 +19,41 @@ public class ConnectClass {
 		
 	}
 	
-	public boolean connect() {
+	public Connection connect() {
 		try {
 			
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/productcatalog_db", "root", "root");
+			st = conn.createStatement();
 			System.out.println("Connection Successful");
-			return true;
+			return conn;
 			
 		} catch(SQLException e) {
 			
 			System.out.println("Error Connecting to Database");
 			e.printStackTrace();
-			return false;
+			return null;
 			
 		}
 	}
+
+	
+/*	
+	public Connection getConn() {
+		return conn;
+	}
+
+	public void setConn(Connection conn) {
+		this.conn = conn;
+	}
+
+	public Statement getSt() {
+		return st;
+	}
+
+	public void setSt(Statement st) {
+		this.st = st;
+	}
+	
+*/
 
 }

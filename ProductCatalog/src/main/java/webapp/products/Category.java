@@ -25,63 +25,104 @@ public Category(String catName, String description) {
 		this.description = description;
 	}
 */	
-	
+
+/*
 	public void addProduct(String pxtName) {
 		Products newProduct = new Products(pxtName);
 		productList.add(newProduct);
 		System.out.println(newProduct + "has been added under " + catName);
 	}
+*/
+	
+	public boolean addProduct(String pxtName) {
+		
+		Products newPxt = new Products(pxtName);
+		if(findProduct(pxtName) == null) {
+			
+			this.productList.add(newPxt);
+			System.out.println(newPxt.getPxtName() + "has been added under " + catName);
+			return true;
+			
+		}
+		
+		System.out.println(newPxt.getPxtName() +" Already exist under " + catName);
+		return false;
+	}
 	
 	
 	public void printProductList() {
 		System.out.println("You have " + productList.size() + "items in " + catName + "Category");
-		for(int i=0; i<productList.size(); i++) {
-			System.out.println((i+1) + ". " + productList.get(i));
+		for(int i=0; i<this.productList.size(); i++) {
+			System.out.println((i+1) + ". " + this.productList.get(i).getPxtName());
 			
 		}
 	}
 	
-	public boolean updateProduct(Products oldPxt, Products newPxt) {
-		int foundPosition = findProduct(oldPxt);
-		if(foundPosition < 0) {
-			System.out.println(oldPxt.getPxtName() + ", was not found.");
+	public boolean updateProduct(String oldPxtName, String newPxtName ) {
+		int foundPosition = searchProduct(oldPxtName);
+		if(foundPosition < 0 ) {
+			System.out.println(oldPxtName + ", was not found.");
 			return false;
 		}
 		
-		this.productList.set(foundPosition, newPxt);
-		System.out.println(oldPxt.getPxtName() + ", was replaced with " + newPxt.getPxtName());
+		this.productList.set(foundPosition, new Products(newPxtName));
+		System.out.println(oldPxtName + ", was replaced with " + newPxtName);
 		return true;
 	}
-	
+
+/*
 	public void modifyProduct(int position, Products newPxt) {
 		productList.set(position, newPxt);
 		System.out.println("Item " + (position+1) + " has been modified");
 	}
 	
+*/	
+	public boolean deleteProduct(String pxtName) {
+		int foundPosition = searchProduct(pxtName);
+		if(foundPosition < 0) {
+			System.out.println(pxtName + ", was not found.");
+			return false;
+		}
+		
+		this.productList.remove(foundPosition);
+		System.out.println(pxtName + " has been deleted");
+		return true;
+	}
 	
+/*
 	public void deleteProduct(int position) {
 		Products theProduct = productList.get(position);
 		productList.remove(position);
 		System.out.println(theProduct.getPxtName() + " has been deleted");
 	}
+*/	
 	
-	
-	private int findProduct(Products product) {
-		return this.productList.indexOf(product);
+	private int searchProduct(String searchItem) {
+		return this.productList.indexOf(findProduct(searchItem));
 	}
 	
-    private int findProduct(String searchItem) {
+    private Products findProduct(String searchItem) {
     	
     	
     	for(int i=0; i<this.productList.size(); i++) {
     		Products product = this.productList.get(i);
     		if(product.getPxtName().equals(searchItem)) {
-    			return i;
+    			return product;
     		}
     	}
     		
-    		return -1;
+    		return null;
     }
+    
+    
+    public String queryProduct(String pxt) {
+    	if(searchProduct(pxt) >= 0) {
+    		return findProduct(pxt).getPxtName();
+    	}
+    	return null;
+    }
+    
+    
     
 
 
