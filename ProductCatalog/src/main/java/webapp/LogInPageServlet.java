@@ -14,9 +14,13 @@ public class LogInPageServlet extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException{
+		int choice = Integer.parseInt(request.getParameter("choice"));
 		
-		request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+		if(choice == 1)
+			request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
 		
+		if(choice == 2)
+			request.getRequestDispatcher("/WEB-INF/views/signup.jsp").forward(request, response);
 	}
 
 }

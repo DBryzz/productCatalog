@@ -10,6 +10,7 @@
 
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="/logout.se">Logout</a></li> 
+			<li><a href="/add-product.se">New Item</a></li>
 		</ul>
 
 	</nav>
