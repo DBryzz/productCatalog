@@ -71,7 +71,7 @@ public class LogInServlet extends HttpServlet {
 			
 			// putting form entries into a list.
 			
-			List<FileItem> items = fileUpload.parseRequest(request);
+			List<FileItem> items = {fileUpload.parseRequest(request);
 			out.print(items);
 			
 			// Form entry 1 is a string (product name)
