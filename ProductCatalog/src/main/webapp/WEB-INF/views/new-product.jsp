@@ -2,20 +2,20 @@
 <%@ include file="../common/session/session-navbar.jspf" %>
 
 <div class = "container">
-	<form action="/login.act" method="get" enctype="multipart/form-data">
-	
+	<form action="/add-product.se" method="post" enctype="multipart/form-data">
+	 
 		<fieldset class="form-group">
-			<label>Item Name:</label>
+			<label for="pxtName">Item Name:</label>
 			<input class="form-control" type="text" name="pxtName" placeholder="Item Name">
 		</fieldset>
 		
 		<fieldset class="form-group">
-			<label>Item Category:</label>
+			<label for="pxtCat">Item Category:</label>
 			<input class="form-control" type="text" name="pxtCat" placeholder="user name">
 		</fieldset>
 		
 		<fieldset>
-			<label>Item Image:</label>
+			<label for="pxtImage">Item Image:</label>
 			<input type="file"  name="pxtImage" value="Upload Image">
 		</fieldset>
 		

@@ -9,6 +9,9 @@
 	<form action="/signup.act" method="post">
 	
 		<fieldset class="form-group">
+			
+			
+			
 			<label>Full Names:</label>
 			<input class="form-control" type="text" name="name" placeholder="user name">
 		</fieldset>

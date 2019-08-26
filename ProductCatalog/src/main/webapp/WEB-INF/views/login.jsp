@@ -7,6 +7,9 @@
 
 <div class="container">
 	<form action="/login.act" method="post">
+		
+		<h3> <font color="red"> <em> ${error_message} </em> </font> </h3> 
+		
 		<fieldset class="form-group">
 			<label>User Name:</label>
 			<input class="form-control" type="text" name="userName" placeholder="user name">

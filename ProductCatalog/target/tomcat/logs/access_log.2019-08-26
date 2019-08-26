@@ -1,0 +1,9 @@
+0:0:0:0:0:0:0:1 - - [26/Aug/2019:22:51:33 +0100] "GET / HTTP/1.1" 200 1099 http-bio-8080-exec-2 840
+0:0:0:0:0:0:0:1 - - [26/Aug/2019:22:51:35 +0100] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-8080-exec-3 3
+0:0:0:0:0:0:0:1 - - [26/Aug/2019:22:51:38 +0100] "GET /login-page.html?choice=1 HTTP/1.1" 200 1620 http-bio-8080-exec-4 148
+0:0:0:0:0:0:0:1 - - [26/Aug/2019:22:51:58 +0100] "POST /login.act HTTP/1.1" 200 1301 http-bio-8080-exec-5 1830
+0:0:0:0:0:0:0:1 - - [26/Aug/2019:22:59:20 +0100] "POST /login.act HTTP/1.1" 200 1310 http-bio-8080-exec-9 300
+0:0:0:0:0:0:0:1 - - [26/Aug/2019:23:10:31 +0100] "GET /index.html HTTP/1.1" 200 1099 http-bio-8080-exec-3 31
+0:0:0:0:0:0:0:1 - - [26/Aug/2019:23:10:40 +0100] "GET /login-page.html?choice=1 HTTP/1.1" 200 1620 http-bio-8080-exec-3 5
+0:0:0:0:0:0:0:1 - - [26/Aug/2019:23:10:51 +0100] "POST /login.act HTTP/1.1" 200 1310 http-bio-8080-exec-3 29
+0:0:0:0:0:0:0:1 - - [26/Aug/2019:23:14:00 +0100] "POST /login.act HTTP/1.1" 200 1339 http-bio-8080-exec-9 374
