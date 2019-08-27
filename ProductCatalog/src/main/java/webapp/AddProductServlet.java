@@ -25,18 +25,6 @@ public class AddProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		Category category = new Category();
-		
-		String pxtOwner;
-		if((String) request.getSession().getAttribute("userName") != null) {
-			pxtOwner = (String) request.getSession().getAttribute("userName");
-		} else{
-			pxtOwner = (String) request.getSession().getAttribute("loginUserName");
-		}
-		
-		request.setAttribute("pxtList", category.makeProductList(pxtOwner));
-		 
-
 		request.getRequestDispatcher("/WEB-INF/views/new-product.jsp").forward(request, response);
 
 	}
@@ -45,6 +33,8 @@ public class AddProductServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		PrintWriter out = response.getWriter();
+		
+		
 
 		String pxtOwner;
 		if ((String) request.getSession().getAttribute("userName") != null) {
@@ -52,6 +42,9 @@ public class AddProductServlet extends HttpServlet {
 		} else {
 			pxtOwner = (String) request.getSession().getAttribute("loginUserName");
 		}
+		
+		Category category = new Category();
+		request.setAttribute("pxtList", category.makeProductList(pxtOwner));
 
 		try {
 
@@ -108,10 +101,12 @@ public class AddProductServlet extends HttpServlet {
 				out.println(pxtName + " was successfully added to your catalog list");
 
 				//request.getSession().setAttribute("loginUserName", name);
+				
+				
 
-				request.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(request, response);
+				  request.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(request, response);
 
-				// response.sendRedirect("/welcome.se");
+				//  response.sendRedirect("/add-product.se");
 			} else {
 
 				System.out.println("Could not upload image\n Verify your form entries");

@@ -10,8 +10,8 @@
 <div class="Container">
 	body content
 
-	<h3 color="red">
-		<em> ${error_message} </em>
+	<h3>
+		<font color="red"> <em> ${error_message} </em> </font> 
 	</h3>
 	<table class="table table-striped" >
 		<thead>
@@ -22,9 +22,9 @@
 		<tbody>
 			<c:forEach items="${pxtList}" var="pxt">
 				<tr>
-					<td>pxt.pxtName</td>
-					<td>pxt.pxtOwner</td>
-					<td>pxt.pxtCategory</td>
+					<td>${pxt.pxtName}</td>
+					<td>${pxt.pxtOwner}</td>
+					<td>${pxt.pxtCategory}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

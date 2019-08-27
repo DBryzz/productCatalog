@@ -16,7 +16,7 @@ public class Category {
 	private List<Products> productList; // = new ArrayList<Products>();
 
 	public Category() {
-
+		this.productList = new ArrayList<Products>();
 	}
 
 	public Category(String catName, String description) {
@@ -43,18 +43,20 @@ public class Category {
 			Connection conn = new ConnectClass().connect();
 			PreparedStatement pst;
 
-			String sql = "SELECT * FROM product_tbl WHERE catName = ?";
+			String sql = "SELECT * FROM product_tbl WHERE owner = ?";
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, name);
 			ResultSet result = pst.executeQuery();
 
 			while (result.next()) {
+				
+				System.out.println(result.getString("pxtName"));
 
 				addProduct(result.getString("pxtName"), result.getString("pxtCategory"), result.getString("owner"));
 
 			}
 
-			return productList;
+			return this.productList;
 
 		} catch (SQLException e) {
 
@@ -63,13 +65,15 @@ public class Category {
 			return null;
 		}
 	}
+	
+	
 
 	@Override
 	public String toString() {
-		return String.format("Category [catName=%s, description=%s, productList=%s]", catName, description,
-				productList);
+		return String.format("Category [catName=%s, description=%s]", catName, description);
 	}
 
+	
 	public boolean addProduct(String pxtName, String pxtCategory, String pxtOwner) {
 
 		Products newPxt = new Products(pxtName, pxtCategory, pxtOwner);
@@ -84,6 +88,7 @@ public class Category {
 		System.out.println(newPxt.getPxtName() + " Already exist under " + catName);
 		return false;
 	}
+	
 
 	public void printProductList() {
 		System.out.println("You have " + productList.size() + "items in " + catName + "Category");

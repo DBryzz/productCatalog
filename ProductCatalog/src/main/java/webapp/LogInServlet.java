@@ -21,6 +21,8 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import webapp.products.Category;
+
 @WebServlet(urlPatterns = "/login.act")
 public class LogInServlet extends HttpServlet {
 
@@ -30,12 +32,36 @@ public class LogInServlet extends HttpServlet {
 		response.sendRedirect("/index.html");
 
 	}
+	
+/*	
+	Category category = new Category();
+	
+	String pxtOwner;
+	if((String) request.getSession().getAttribute("userName") != null) {
+		pxtOwner = (String) request.getSession().getAttribute("userName");
+	} else{
+		pxtOwner = (String) request.getSession().getAttribute("loginUserName");
+	}
+	
+	request.setAttribute("pxtList", category.makeProductList(pxtOwner));
+	 
+
+	request.getRequestDispatcher("/WEB-INF/views/new-product.jsp").forward(request, response);
+
+	
+	*/
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		
+		
 		String name = request.getParameter("userName");
 		String password = request.getParameter("password");
+		
+		Category category = new Category();
+		request.setAttribute("pxtList", category.makeProductList(name));
 
 		try {
 
@@ -58,7 +84,7 @@ public class LogInServlet extends HttpServlet {
 
 				request.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(request, response);
 
-				// response.sendRedirect("/welcome.se");
+			//	response.sendRedirect("/add-product.se");
 
 			} else {
 				System.out.println("Incompatible User Name and Password Combination");
