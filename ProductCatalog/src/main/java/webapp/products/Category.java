@@ -108,12 +108,12 @@ public class Category {
 		if (findProduct(pxtName) == null) {
 
 			this.productList.add(newPxt);
-			System.out.println(newPxt.getPxtName() + "has been added under " + catName);
+			System.out.println(newPxt.getPxtName() + " has been added under " + pxtCategory);
 			return true;
 
 		}
 
-		System.out.println(newPxt.getPxtName() + " Already exist under " + catName);
+		System.out.println(newPxt.getPxtName() + " Already exist under " + pxtCategory);
 		return false;
 	}
 	
