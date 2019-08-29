@@ -18,6 +18,7 @@
 			<th>Item Name</th>
 			<th>Item Owner</th>
 			<th>Item Category</th>
+			<th>Image</th>
 		</thead>
 		<tbody>
 			<c:forEach items="${pxtList}" var="pxt">
@@ -25,6 +26,7 @@
 					<td>${pxt.pxtName}</td>
 					<td>${pxt.pxtOwner}</td>
 					<td>${pxt.pxtCategory}</td>
+					<td><img src="data:image/jpg;Base64,${pxt.pxtImage}" width="40" height="50"/></td>
 				</tr>
 			</c:forEach>
 		</tbody>

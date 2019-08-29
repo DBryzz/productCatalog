@@ -1,10 +1,15 @@
 package webapp.products;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import webapp.connect.ConnectClass;
@@ -43,7 +48,7 @@ public class Category {
 			Connection conn = new ConnectClass().connect();
 			PreparedStatement pst;
 
-			String sql = "SELECT * FROM product_tbl WHERE owner = ?";
+			String sql = "SELECT * FROM product_tbl WHERE owner = ? GROUP BY pxtID";
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, name);
 			ResultSet result = pst.executeQuery();
@@ -51,20 +56,43 @@ public class Category {
 			while (result.next()) {
 				
 				System.out.println(result.getString("pxtName"));
+				
+				Blob blobImage = result.getBlob("pxtImage");
+				
+				InputStream inputStream = blobImage.getBinaryStream();
+				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+				byte[] buffer = new byte[4096];
+				int bytesRead = -1;
+				
+				while ((bytesRead = inputStream.read(buffer)) != -1) {
+					outputStream.write(buffer, 0, bytesRead);
+				}
+				
+				byte[] imageBytes = outputStream.toByteArray();
+				String pxtImage = Base64.getEncoder().encodeToString(imageBytes);
+				
+				inputStream.close();
+				outputStream.close();
+			//	category.setBaseimg(baseimg);
+			//	imageList.add(baseimg);
 
-				addProduct(result.getString("pxtName"), result.getString("pxtCategory"), result.getString("owner"));
+				addProduct(result.getString("pxtName"), result.getString("pxtCategory"), result.getString("owner"), pxtImage);
+				
 
 			}
 
-			return this.productList;
+			return productList;
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 
 			System.out.println("SQL error = " + e);
 
 			return null;
 		}
+		
 	}
+	
+	
 	
 	
 
@@ -74,9 +102,9 @@ public class Category {
 	}
 
 	
-	public boolean addProduct(String pxtName, String pxtCategory, String pxtOwner) {
+	public boolean addProduct(String pxtName, String pxtCategory, String pxtOwner, String pxtImage) {
 
-		Products newPxt = new Products(pxtName, pxtCategory, pxtOwner);
+		Products newPxt = new Products(pxtName, pxtCategory, pxtOwner, pxtImage);
 		if (findProduct(pxtName) == null) {
 
 			this.productList.add(newPxt);
@@ -98,14 +126,14 @@ public class Category {
 		}
 	}
 
-	public boolean updateProduct(String oldPxtName, String newPxtName, String newPxtCat, String newPxtOwner) {
+	public boolean updateProduct(String oldPxtName, String newPxtName, String newPxtCat, String newPxtOwner, String newPxtImage) {
 		int foundPosition = searchProduct(oldPxtName);
 		if (foundPosition < 0) {
 			System.out.println(oldPxtName + ", was not found.");
 			return false;
 		}
 
-		this.productList.set(foundPosition, new Products(newPxtName, newPxtCat, newPxtOwner));
+		this.productList.set(foundPosition, new Products(newPxtName, newPxtCat, newPxtOwner, newPxtImage));
 		System.out.println(oldPxtName + ", was replaced with " + newPxtName);
 		return true;
 	}

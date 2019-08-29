@@ -11,26 +11,27 @@ import webapp.products.Products;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
-
 @WebServlet(urlPatterns = "/index.html")
-public class IndexServlet extends HttpServlet{
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException{
-		
-		
-		
+public class IndexServlet extends HttpServlet {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		Category category = new Category();
-		
-		request.getSession().setAttribute("connect", new ConnectClass().connect()); 
+
+		request.getSession().setAttribute("connect", new ConnectClass().connect());
 		Connection conn = (Connection) request.getSession().getAttribute("connect");
 
 		try {
@@ -42,32 +43,51 @@ public class IndexServlet extends HttpServlet{
 			ResultSet result = pst.executeQuery();
 
 			while (result.next()) {
-				
+
 				System.out.println(result.getString("pxtName"));
 
-				category.addProduct(result.getString("pxtName"), result.getString("pxtCategory"), result.getString("owner"));
+				Blob blobImage = result.getBlob("pxtImage");
+
+				InputStream inputStream = blobImage.getBinaryStream();
+				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+				byte[] buffer = new byte[4096];
+				int bytesRead = -1;
+
+				while ((bytesRead = inputStream.read(buffer)) != -1) {
+					outputStream.write(buffer, 0, bytesRead);
+				}
+
+				byte[] imageBytes = outputStream.toByteArray();
+				String pxtImage = Base64.getEncoder().encodeToString(imageBytes);
+
+				inputStream.close();
+				outputStream.close();
+				// category.setBaseimg(baseimg);
+				// imageList.add(baseimg);
+
+				category.addProduct(result.getString("pxtName"), result.getString("pxtCategory"),
+						result.getString("owner"), pxtImage);
 
 			}
-			
+
 			request.setAttribute("firstList", category.getProductList());
 
 			request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request, response);
-			
 
 		} catch (SQLException e) {
 
 			System.out.println("SQL error = " + e);
 
-			
 		}
-		
-/*
-		request.setAttribute("firstList", category.getProductList());
 
-		request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request, response);
-		
-		*/
-		
+		/*
+		 * request.setAttribute("firstList", category.getProductList());
+		 * 
+		 * request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request,
+		 * response);
+		 * 
+		 */
+
 	}
 
 }

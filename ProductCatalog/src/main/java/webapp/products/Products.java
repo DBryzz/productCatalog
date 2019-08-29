@@ -1,18 +1,22 @@
 package webapp.products;
 
+import java.sql.Blob;
+
 public class Products {
 	
 	private String pxtName;
 	private String pxtCategory;
 	private String pxtOwner;
+	private String pxtImage;
 	
 	
 	
-	public Products(String pxtName, String pxtCategory, String pxtOwner) {
+	public Products(String pxtName, String pxtCategory, String pxtOwner, String pxtImage) {
 		super();
 		this.pxtName = pxtName;
 		this.pxtCategory = pxtCategory;
 		this.pxtOwner = pxtOwner;
+		this.pxtImage = pxtImage;
 		//this.pxtCategory = pxtCategory;
 	}
 	
@@ -25,7 +29,7 @@ public class Products {
 
 	@Override
 	public String toString() {
-		return String.format("Products [pxtName=%s, pxtCategory=%s, pxtOwner=%s]", pxtName, pxtCategory, pxtOwner);
+		return String.format("Products [pxtName=%s, pxtCategory=%s, pxtOwner=%s ]", pxtName, pxtCategory, pxtOwner);
 	}
 
 
@@ -67,6 +71,20 @@ public class Products {
 		this.pxtName = pxtName;
 	}
 
+
+
+	public String getPxtImage() {
+		return pxtImage;
+	}
+
+
+
+	public void setPxtImage(String pxtImage) {
+		this.pxtImage = pxtImage;
+	}
+
+	
+	
 	
 /*	
 	public Category getPxtCategory() {
