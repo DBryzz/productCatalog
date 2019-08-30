@@ -15,4 +15,13 @@
     <servlet-name>SignupServlet</servlet-name>
     <url-pattern>/SignupServlet</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>loginRequiredFilter</display-name>
+    <filter-name>loginRequiredFilter</filter-name>
+    <filter-class>webapp.filter.loginRequiredFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>loginRequiredFilter</filter-name>
+    <url-pattern>/loginRequiredFilter</url-pattern>
+  </filter-mapping>
 </web-app>

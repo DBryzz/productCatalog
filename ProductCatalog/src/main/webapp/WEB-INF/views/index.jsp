@@ -21,7 +21,7 @@
 					<td>${list.pxtName}</td>
 					<td>${list.pxtOwner}</td>
 					<td>${list.pxtCategory}</td>
-					<td><img src="data:image/jpg;Base64,${pxt.pxtImage}" width="40" height="50"/></td>
+					<td><img src="data:image/jpg;Base64,${list.pxtImage}" width="40" height="50"/></td>
 				</tr>
 			</c:forEach>
 		</tbody>

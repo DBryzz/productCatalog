@@ -1,4 +1,4 @@
-package webapp;
+package webapp.compute;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,12 +22,19 @@ import java.util.List;
 @WebServlet(urlPatterns = "/add-product.se")
 public class AddProductServlet extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		request.getRequestDispatcher("/WEB-INF/views/new-product.jsp").forward(request, response);
 
 	}
+	
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -36,15 +43,17 @@ public class AddProductServlet extends HttpServlet {
 		
 		
 
-		String pxtOwner;
-		if ((String) request.getSession().getAttribute("userName") != null) {
-			pxtOwner = (String) request.getSession().getAttribute("userName");
-		} else {
-			pxtOwner = (String) request.getSession().getAttribute("loginUserName");
-		}
+		//String pxtOwner;
+		//if ((String) request.getSession().getAttribute("userName") != null) {
+			
+		//} else {
+		//	pxtOwner = (String) request.getSession().getAttribute("loginUserName");
+		//}
+		
+		String pxtOwner = (String) request.getSession().getAttribute("userName");
 		
 		Category category = new Category();
-		request.setAttribute("pxtList", category.makeProductList(pxtOwner));
+		
 
 		try {
 
@@ -70,6 +79,7 @@ public class AddProductServlet extends HttpServlet {
 
 			// putting form entries into a list.
 
+			@SuppressWarnings("unchecked")
 			List<FileItem> items = fileUpload.parseRequest(request);
 			out.print(items);
 
@@ -102,9 +112,9 @@ public class AddProductServlet extends HttpServlet {
 
 				//request.getSession().setAttribute("loginUserName", name);
 				
-				
+				request.setAttribute("pxtList", category.makeProductList(pxtOwner));
 
-				  request.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(request, response);
 
 				//  response.sendRedirect("/add-product.se");
 			} else {

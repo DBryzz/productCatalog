@@ -1,18 +1,21 @@
 package webapp.products;
 
-import java.sql.Blob;
 
 public class Products {
-	
+	private int pxtID;
 	private String pxtName;
 	private String pxtCategory;
 	private String pxtOwner;
 	private String pxtImage;
 	
 	
+	public Products() {
+		
+	}
 	
 	public Products(String pxtName, String pxtCategory, String pxtOwner, String pxtImage) {
 		super();
+		this.pxtID = 0000;
 		this.pxtName = pxtName;
 		this.pxtCategory = pxtCategory;
 		this.pxtOwner = pxtOwner;
@@ -22,10 +25,24 @@ public class Products {
 	
 	
 	
+	
+	
 	//return "Todo [name=" + name + ", category=" + category + "]";
 	
 	
 	
+
+	public int getPxtID() {
+		return pxtID;
+	}
+
+
+
+	public void setPxtID(int pxtID) {
+		this.pxtID = pxtID;
+	}
+
+
 
 	@Override
 	public String toString() {
@@ -84,17 +101,6 @@ public class Products {
 	}
 
 	
-	
-	
-/*	
-	public Category getPxtCategory() {
-		return pxtCategory;
-	}
-	
-	public void setPxtCategory(Category pxtCategory) {
-		this.pxtCategory = pxtCategory;
-	}
-*/	
 	
 	
 	

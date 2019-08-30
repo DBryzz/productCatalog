@@ -3,7 +3,6 @@ package webapp.connect;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 //import java.sql.Statement;
 
@@ -13,7 +12,6 @@ import java.sql.Statement;
 public class ConnectClass {
 	
 	private Connection conn;
-	private Statement st;
 	
 	public ConnectClass() {
 		
@@ -23,7 +21,6 @@ public class ConnectClass {
 		try {
 			
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/productcatalog_db", "root", "root");
-			st = conn.createStatement();
 			System.out.println("Connection Successful");
 			return conn;
 			

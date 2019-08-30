@@ -1,4 +1,4 @@
-package webapp;
+package webapp.login;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +12,11 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/login-page.html")
 public class LogInPageServlet extends HttpServlet{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException{
 		int choice = Integer.parseInt(request.getParameter("choice"));

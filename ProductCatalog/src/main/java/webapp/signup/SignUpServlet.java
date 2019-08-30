@@ -1,4 +1,4 @@
-package webapp;
+package webapp.signup;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,12 +10,16 @@ import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 
 @WebServlet(urlPatterns = "/signup.act")
 public class SignUpServlet extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -49,7 +53,7 @@ public class SignUpServlet extends HttpServlet {
 
 				System.out.println(name +" was inserted into database");
 
-				request.getSession().setAttribute("UserName", name);
+				request.getSession().setAttribute("userName", name);
 				
 				request.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(request, response);
 

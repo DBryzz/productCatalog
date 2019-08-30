@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import webapp.connect.ConnectClass;
 import webapp.products.Category;
-import webapp.products.Products;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,12 +18,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Base64;
-import java.util.List;
 
 @WebServlet(urlPatterns = "/index.html")
 public class IndexServlet extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -38,7 +40,7 @@ public class IndexServlet extends HttpServlet {
 
 			PreparedStatement pst;
 
-			String sql = "SELECT * FROM product_tbl";
+			String sql = "SELECT * FROM product_tbl GROUP BY pxtID";
 			pst = conn.prepareStatement(sql);
 			ResultSet result = pst.executeQuery();
 
@@ -62,8 +64,6 @@ public class IndexServlet extends HttpServlet {
 
 				inputStream.close();
 				outputStream.close();
-				// category.setBaseimg(baseimg);
-				// imageList.add(baseimg);
 
 				category.addProduct(result.getString("pxtName"), result.getString("pxtCategory"),
 						result.getString("owner"), pxtImage);
