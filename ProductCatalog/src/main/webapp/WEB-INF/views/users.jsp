@@ -27,7 +27,7 @@
 					<figure class="col-md-4">
 
 						<img alt="picture" src="data:image/jpg;Base64,${pxt.pxtImage}"
-							class="img-fluid" width="400" height="200">
+							class="img-fluid" width="420" height="200">
 
 						<table class="table table-striped">
 							<tr>
