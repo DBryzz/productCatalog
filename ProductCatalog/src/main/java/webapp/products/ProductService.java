@@ -14,6 +14,10 @@ import webapp.connect.*;
 public class ProductService {
 
 	private static List<Category> categoryList = new ArrayList<Category>();
+	
+	public ProductService() {
+		
+	}
 
 	public List<Category> makeCategoryList() {
 		
@@ -59,7 +63,7 @@ public class ProductService {
 		if (findCategory(catName) == null) {
 
 			categoryList.add(newCat);
-			System.out.println(newCat.getCatName() + "has been added as a category");
+			System.out.println(newCat.getCatName() + " has been added as a category");
 			return true;
 
 		}

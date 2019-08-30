@@ -12,23 +12,21 @@
 				type="text" name="pxtName" value="${formerName}" placeholder="Item Name">
 		</fieldset>
 		
-		 
+		<!--   
 		<fieldset class="form-group">
 			<label for="pxtCat">Item Category:</label>
 			<input class="form-control" type="text" name="pxtCat" value="${formerCat}" placeholder="user name">
 		</fieldset>
+		-->
 		
-	<!-- 
-	<fieldset class="form-group">
-	<label for="pxtCat">Item Category:</label>
-		<select name=category>
-			<c:forEach items="${pxtList}" var="pxt">
-				<option class = "form-control" value="${pxt.pxtCategory}">${pxt.pxtCategory}</option>
-			</c:forEach>
-		</select>
-	
-	</fieldset>
-	-->	
+		
+		<fieldset class="form-group">
+			<label for="pxtCat">Item Category:</label> <select name="category">
+				<c:forEach items="${catList}" var="cat">
+					<option class="form-control" value="${cat.catName}">${cat.catName}</option>
+				</c:forEach>
+			</select>
+		</fieldset>
 
 		<fieldset>
 			<label for="pxtImage">Item Image:</label> <input type="file"

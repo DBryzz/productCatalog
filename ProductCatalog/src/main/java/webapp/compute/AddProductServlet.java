@@ -9,6 +9,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import webapp.products.Category;
+import webapp.products.ProductService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,6 +30,10 @@ public class AddProductServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		ProductService newService = new ProductService();;
+		
+		request.setAttribute("catList", newService.makeCategoryList());
 		
 		request.getRequestDispatcher("/WEB-INF/views/new-product.jsp").forward(request, response);
 
