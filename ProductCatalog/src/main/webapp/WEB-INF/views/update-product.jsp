@@ -2,20 +2,20 @@
 <%@ include file="../common/session/session-navbar.jspf"%>
 
 <div class="container">
-	<form action="/add-product.se" method="post"
+	<form action="/update-product.se" method="post"
 		enctype="multipart/form-data">
 																	<!-- 				value="${newlist.cat}"  -->
 		
 		
 		<fieldset class="form-group">
 			<label for="pxtName">Item Name:</label> <input class="form-control"
-				type="text" name="pxtName"  placeholder="Item Name">
+				type="text" name="pxtName" value="${formerName}" placeholder="Item Name">
 		</fieldset>
 		
 		 
 		<fieldset class="form-group">
 			<label for="pxtCat">Item Category:</label>
-			<input class="form-control" type="text" name="pxtCat"  placeholder="user name">
+			<input class="form-control" type="text" name="pxtCat" value="${formerCat}" placeholder="user name">
 		</fieldset>
 		
 	<!-- 
@@ -36,7 +36,7 @@
 		</fieldset>
 
 		<input class="btn btn-success" type="submit" name="add_item"
-			value="Add Item">
+			value="Save Changes">
 
 	</form>
 </div>

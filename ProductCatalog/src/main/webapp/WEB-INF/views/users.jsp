@@ -2,7 +2,7 @@
 <%@ include file="../common/session/session-navbar.jspf"%>
 
 <div>
-	<h1>${userName}'s Catalog</h1>
+	<h1>${userName}'sCatalog</h1>
 </div>
 
 
@@ -11,45 +11,52 @@
 	body content
 
 	<h3>
-		<font color="red"> <em> ${error_message} </em> </font> 
+		<font color="red"> <em> ${error_message} </em>
+		</font>
 	</h3>
-	
-	
-<div class="row">
-  <div class="col-md-12">
 
-    <div id="mdb-lightbox-ui"></div>
 
-    <div class="mdb-lightbox">
+	<div class="row">
+		<div class="col-md-12">
 
-	<c:forEach items="${pxtList}" var="pxt">
-      <figure class="col-md-3">
-        
-          <img alt="picture" src="data:image/jpg;Base64,${pxt.pxtImage}" class="img-fluid" width="200" height="200">
-          <table>
-          <tr>
-					<td>Name: ${pxt.pxtName}</td>			
-					<td>Category:${pxt.pxtCategory}</td>
-					<tr>
-					<td><a class="btn btn-danger" href="/delete-product.se?id=${pxt.pxtID}&name=${pxt.pxtName}&category=${pxt.pxtCategory}&owner=${pxt.pxtOwner}">Delete</a>
-					<td><a class="btn btn-danger" href="/update-product.se?id=${pxt.pxtID}&name=${pxt.pxtName}&category=${pxt.pxtCategory}&owner=${pxt.pxtOwner}">Delete</a>
-			
-			</trd>
-					
-			</tr>
-          </table>
-          <h3 class="text-center my-3">${pxt.pxtName}</h3>
-          <a class="btn btn-danger" href="/delete-product.se?id=${pxt.pxtID}&name=${pxt.pxtName}&category=${pxt.pxtCategory}&owner=${pxt.pxtOwner}">Delete</a>
+			<div id="mdb-lightbox-ui"></div>
+
+			<div class="mdb-lightbox">
+
+				<c:forEach items="${pxtList}" var="pxt">
+					<figure class="col-md-4">
+
+						<img alt="picture" src="data:image/jpg;Base64,${pxt.pxtImage}"
+							class="img-fluid" width="400" height="200">
+
+						<table class="table table-striped">
+							<tr>
+								<td><strong>Name: </strong> ${pxt.pxtName}</td>
+								<td><strong>Category: </strong>${pxt.pxtCategory}</td>
+							</tr>
+							<tr>
+								<td><a class="btn btn-danger"
+									href="/delete-product.se?id=${pxt.pxtID}&name=${pxt.pxtName}&category=${pxt.pxtCategory}&owner=${pxt.pxtOwner}">Delete</a></td>
+								<td><a class="btn btn-success"
+									href="/update-product.se?id=${pxt.pxtID}&name=${pxt.pxtName}&category=${pxt.pxtCategory}&owner=${pxt.pxtOwner}">Update</a></td>
+							</tr>
+
+							<tr></tr>
+							<tr></tr>
+							<tr></tr>
+							<tr></tr>
+
+						</table>
 						
-      </figure>
-      </c:forEach>
-      
-      </div>
+					</figure>
+				</c:forEach>
 
-  </div>
-</div>
+			</div>
 
-<!-- 
+		</div>
+	</div>
+
+	<!-- 
 <div class="row">
   <div class="col-md-12">
 
@@ -68,7 +75,7 @@
   </div>
 </div>
 -->
-<!--  
+	<!--  
 	<table class="table table-striped" >
 		<thead>
 			<th>Item Name</th>		
