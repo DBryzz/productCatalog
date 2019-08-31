@@ -1,4 +1,4 @@
-package webapp.compute;
+package webapp.compute.product;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +31,7 @@ public class AddProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		ProductService newService = new ProductService();;
+		ProductService newService = new ProductService();
 		
 		request.setAttribute("catList", newService.makeCategoryList());
 		
@@ -127,9 +127,14 @@ public class AddProductServlet extends HttpServlet {
 				System.out.println("Could not upload image\n Verify your form entries");
 
 				request.setAttribute("error_message", "Could not upload image\n Verify your form entries");
+				ProductService newService = new ProductService();
+				
+				request.setAttribute("catList", newService.makeCategoryList());
 				request.getRequestDispatcher("/WEB-INF/views/new-product.jsp").forward(request, response);
 			}
-
+			
+			
+			
 			// pst.close();
 			// conn.close();
 
@@ -138,7 +143,11 @@ public class AddProductServlet extends HttpServlet {
 			System.out.println("Could not upload image\n Verify your form entries");
 
 			System.out.println("file error = " + e.getMessage());
-			request.setAttribute("error_message", "Could not upload image\n Verify your form entries");
+			request.setAttribute("error_message", "Could not upload image\n Verify your form entries\n" +e.getMessage());
+			
+			ProductService newService = new ProductService();
+			
+			request.setAttribute("catList", newService.makeCategoryList());
 			request.getRequestDispatcher("/WEB-INF/views/new-product.jsp").forward(request, response);
 		}
 	}

@@ -2,7 +2,7 @@
 <%@ include file="../common/session/session-navbar.jspf"%>
 
 <div>
-	<h1>${userName}'sCatalog</h1>
+	<h1>${userName}'s Catalog</h1>
 </div>
 
 

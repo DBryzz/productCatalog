@@ -4,8 +4,7 @@
 
 		<ul class="nav navbar-nav">
 			<li class=""><a href="index.html">Home</a></li>
-			<li><a href="/list.se?choice=1">categoryList</a></li>
-			<li><a href="/list.se?choice=2">productList</a></li>
+			<li><a href="/add-category.se">Category</a></li>
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right">

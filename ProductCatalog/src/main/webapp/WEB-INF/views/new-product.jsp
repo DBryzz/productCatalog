@@ -4,32 +4,14 @@
 <div class="container">
 
 
-	body content
+	
 
-	<table class="table table-striped">
-		<caption>List of Categories</caption>
-		<thead>
-			<th>Category Title</th>
-			<th>Category Description</th>
-
-		</thead>
-		<tbody>
-			<c:forEach items="${firstList}" var="list">
-				<tr>
-					<td>${list.pxtName}</td>
-					<td>${list.pxtOwner}</td>
-					<td>${list.pxtCategory}</td>
-					<td><img src="data:image/jpg;Base64,${list.pxtImage}"
-						width="40" height="50" /></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
-
+ 	<font color="red">${error_message}</font>
 
 	<form action="/add-product.se" method="post"
 		enctype="multipart/form-data">
+		
+		<input type="hidden" name="MAX_FILE_SIZE" value="2097152" /> <!-- 8MB  8388608 4194304 -->
 
 
 		<fieldset class="form-group">
@@ -45,12 +27,11 @@
 	 	-->
 
 		<fieldset class="form-group">
-			<label for="pxtCat">Item Category:</label> <select name="category">
+			<label for="pxtCat">Item Category:</label> <br> <select name="category" class="select">
 				<c:forEach items="${catList}" var="cat">
-					<option class="form-control" value="${cat.catName}">${cat.catName}</option>
+					<option class="option" value="${cat.catName}">${cat.catName}</option>
 				</c:forEach>
 			</select>
-
 		</fieldset>
 
 

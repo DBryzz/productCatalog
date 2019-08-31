@@ -14,18 +14,24 @@ import webapp.connect.ConnectClass;
 
 public class Category {
 
+	private int catID;
 	private String catName;
 	private String description;
+	private String owner;
+	
+
+
 	private List<Products> productList; // = new ArrayList<Products>();
 
 	public Category() {
 		this.productList = new ArrayList<Products>();
 	}
 
-	public Category(String catName, String description) {
+	public Category(String catName, String description, String owner) {
 		super();
 		this.catName = catName;
 		this.description = description;
+		this.owner = owner;
 		this.productList = new ArrayList<Products>();
 	}
 
@@ -108,7 +114,7 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return String.format("Category [catName=%s, description=%s]", catName, description);
+		return String.format("Category [catName=%s, description=%s, owner=%s]", catName, description, owner);
 	}
 
 	
@@ -230,6 +236,24 @@ public class Category {
 	}
 
 	
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	} 
+	
+
+
+	public int getCatID() {
+		return catID;
+	}
+
+	public void setCatID(int catID) {
+		this.catID = catID;
+	}
+
 	public List<Products> getProductList() {
 		return productList;
 	}

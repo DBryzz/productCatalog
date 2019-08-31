@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import webapp.connect.ConnectClass;
 import webapp.products.Category;
+import webapp.products.ProductService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +31,7 @@ public class IndexServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+			
 
 		Category category = new Category();
 
@@ -89,5 +91,6 @@ public class IndexServlet extends HttpServlet {
 		 */
 
 	}
+	
 
 }

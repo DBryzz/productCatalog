@@ -21,24 +21,64 @@ public class ProductService {
 
 	public List<Category> makeCategoryList() {
 		
-		
+		List<Category> newCatList = new ArrayList<Category>();
 		try {
 
 			Connection conn = new ConnectClass().connect();
 			PreparedStatement pst;
 
-			String sql = "SELECT * FROM category_tbl";
+			String sql = "SELECT * FROM category_tbl GROUP BY catID";
 			pst = conn.prepareStatement(sql);
 			ResultSet result = pst.executeQuery();
 
 			while (result.next()) {
 				
+				Category category = new Category();
+				category.setCatID(result.getInt("catID"));
+				category.setCatName(result.getString("catName"));
+				category.setDescription(result.getString("catDescription"));
+				category.setOwner(result.getString("owner"));
 				
-				addCategory(result.getString("catName"), result.getString("catDescription"));
+				newCatList.add(category);
 
 			}
 			
-			return categoryList;
+			return newCatList;
+			
+		} catch (SQLException e) {
+
+			System.out.println("SQL error = " + e);
+			return null;
+		}
+	}
+	
+	
+	public List<Category> makeCategoryList(String owner) {
+		
+		List<Category> newCatList = new ArrayList<Category>();
+		try {
+
+			Connection conn = new ConnectClass().connect();
+			PreparedStatement pst;
+
+			String sql = "SELECT * FROM category_tbl WHERE owner=? GROUP BY catID";
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, owner);
+			ResultSet result = pst.executeQuery();
+
+			while (result.next()) {
+				
+				Category category = new Category();
+				category.setCatID(result.getInt("catID"));
+				category.setCatName(result.getString("catName"));
+				category.setDescription(result.getString("catDescription"));
+				category.setOwner(result.getString("owner"));
+				
+				newCatList.add(category);
+
+			}
+			
+			return newCatList;
 
 		} catch (SQLException e) {
 
@@ -46,6 +86,8 @@ public class ProductService {
 			return null;
 		}
 	}
+	
+	
 	
 	public void showCatPxt() {
 		
@@ -57,9 +99,9 @@ public class ProductService {
 	}
 
 	
-	public boolean addCategory(String catName, String Description) {
+	public boolean addCategory(String catName, String Description, String owner) {
 
-		Category newCat = new Category(catName, Description);
+		Category newCat = new Category(catName, Description, owner);
 		if (findCategory(catName) == null) {
 
 			categoryList.add(newCat);
@@ -81,14 +123,14 @@ public class ProductService {
 		}
 	}
 
-	public boolean updateCategory(String oldCatName, String newCatName, String newDescription) {
+	public boolean updateCategory(String oldCatName, String newCatName, String newDescription, String newOwner) {
 		int foundPosition = searchCategory(oldCatName);
 		if (foundPosition < 0) {
 			System.out.println(oldCatName + ", was not found.");
 			return false;
 		}
 
-		categoryList.set(foundPosition, new Category(newCatName, newDescription));
+		categoryList.set(foundPosition, new Category(newCatName, newDescription, newOwner));
 		System.out.println(oldCatName + ", was replaced with " + newCatName);
 		return true;
 	}

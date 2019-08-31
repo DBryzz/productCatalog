@@ -1,4 +1,4 @@
-package webapp.compute;
+package webapp.compute.product;
 
 import java.io.IOException;
 import java.sql.Connection;

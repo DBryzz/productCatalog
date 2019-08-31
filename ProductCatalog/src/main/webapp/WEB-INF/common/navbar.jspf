@@ -3,9 +3,8 @@
 		<a href="/" class="navbar-brand">Brand</a>
 
 		<ul class="nav navbar-nav">
-			<li class=""><a href="index.html">Home</a></li>
-			<li><a href="/todo.do">Todos</a></li>
-			<li><a href="http://www.in28minutes.com">In28Minutes</a></li>
+			<li class=""><a href="/index.html">Home</a></li>
+			<li><a href="/list.html">categoryList</a></li>
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right">
