@@ -45,7 +45,7 @@ public class DeleteCategoryServlet extends HttpServlet {
 
 		try {
 
-			Connection conn = (Connection) request.getSession().getAttribute("connect");
+			Connection conn = (Connection) request.getSession().getAttribute("sessionConnect");
 
 			PreparedStatement pst;
 
@@ -61,20 +61,20 @@ public class DeleteCategoryServlet extends HttpServlet {
 				request.setAttribute("catList", newService.makeCategoryList(catOwner));
 				System.out.println( catName + " ---- " + catDescription +" created by "+ owner + "  has been removed from database");
 				
-				sql = "DELETE FROM product_tbl WHERE pxtID = (SELECT pxtID FROM product_tbl WHERE pxtCategory = ? AND owner =?)"; 
+				String sql1 = "DELETE FROM product_tbl WHERE pxtCategory = ? AND owner = ?"; 
 				
-						//DELETE FROM product_tbl WHERE pxtCategory = ? AND owner = ?
-						
-				pst = conn.prepareStatement(sql);
-				pst.setString(1, catName);
-				pst.setString(2, owner);
+			//	DELETE FROM product_tbl WHERE pxtID = (SELECT pxtID FROM product_tbl WHERE pxtCategory = ? AND owner =?)
 				
-				result = pst.execute();
+				PreparedStatement pst1 = conn.prepareStatement(sql1);
+				pst1.setString(1, catName);
+				pst1.setString(2, owner);
+				
+				boolean result1 = pst1.execute();
 				
 
-				if (!result) {
+				if (!result1) {
 
-					System.out.println( catName + " --- as well as all your products under it have been deleted");
+					System.out.println( catName + " --- " + catDescription + " as well as all your products under it have been deleted");
 					request.getRequestDispatcher("/WEB-INF/views/new-category.jsp").forward(request, response);
 
 					

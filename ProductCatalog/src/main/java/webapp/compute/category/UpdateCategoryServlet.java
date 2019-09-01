@@ -33,6 +33,8 @@ public class UpdateCategoryServlet extends HttpServlet {
 	
 	
 	private static int catID;
+	private static String title;
+	private static String description;
 	//private formerCat
 
 	/**
@@ -48,11 +50,11 @@ public class UpdateCategoryServlet extends HttpServlet {
 		
 		catID = Integer.parseInt(request.getParameter("id"));
 		
-		String catName = request.getParameter("category");
-		String catDescription = request.getParameter("name");
+		title = request.getParameter("name");
+		description = request.getParameter("description");
 		
-		request.setAttribute("formerName", catName);
-		request.setAttribute("formerDescription", catDescription);
+		request.setAttribute("formerName", title);
+		request.setAttribute("formerDescription", description);
 
 		
 		request.getRequestDispatcher("/WEB-INF/views/update-category.jsp").forward(request, response);
@@ -73,9 +75,9 @@ public class UpdateCategoryServlet extends HttpServlet {
 		String pxtOwner = (String) request.getSession().getAttribute("userName");
 		
 		//int pxtID = Integer.parseInt(request.getParameter("id"));
-		String cat = request.getParameter("catName");
-		String name = request.getParameter("catDescription");
-		String owner = request.getParameter("owner");
+	//	String catName = request.getParameter("catName");
+	//	String  = request.getParameter("catDescription");
+	//	String owner = request.getParameter("owner");
 	//	String image = request.getParameter("image");
 		
 		
@@ -85,7 +87,7 @@ public class UpdateCategoryServlet extends HttpServlet {
 
 		try {
 
-			Connection conn = (Connection) request.getSession().getAttribute("connect");
+			Connection conn = (Connection) request.getSession().getAttribute("sessionConnect");
 
 			PreparedStatement pst;
 			
@@ -93,7 +95,7 @@ public class UpdateCategoryServlet extends HttpServlet {
 			String catDescription = request.getParameter("catDescription");
 			
 
-			String sql = "UPDATE category_tbl SET catName = ?, pxtDescription = ? WHERE catID = ?";
+			String sql = "UPDATE category_tbl SET catName = ?, catDescription = ? WHERE catID = ?";
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, catName);
 			pst.setString(2, catDescription);
@@ -103,37 +105,42 @@ public class UpdateCategoryServlet extends HttpServlet {
 
 			if (!result) {
 
-				System.out.println( name + " ---- "+ cat +" has been modified to  \n and is owned by "+ owner );
+				System.out.println( title + " ---- "+ description +" owned by "+ pxtOwner +" has been modified to "+ title + " ---- " + description);
 
 				request.setAttribute("catList", newService.makeCategoryList(pxtOwner));
 
 				
-				request.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/views/new-category.jsp").forward(request, response);
 
 
 			} else {
-				System.out.println("Could not update "+ catName);
+				System.out.println("Could not update "+ title);
 				
-				String updateMsg = "Could not update "+ catName;
+				String updateMsg = "Could not update "+ title;
 				
 				//request.setAttribute("deleteMsg", deleteMsg);
 
 				request.setAttribute("error_message", updateMsg);
 				
-				request.setAttribute("pxtList", newService.makeCategoryList(pxtOwner));
-				request.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(request, response);
+		//		request.setAttribute("catList", newService.makeCategoryList(pxtOwner));
+				
+				request.setAttribute("formerName", title);
+				request.setAttribute("formerDescription", description);
+				request.getRequestDispatcher("/WEB-INF/views/update-category.jsp").forward(request, response);
 			}
 
-			/*
-			 * result.close(); pst.close(); conn.close();
-			 */
+			
 		} catch (SQLException e) {
 
 			System.out.println("Querry error = " + e.getMessage());
 			e.printStackTrace();
 			
-			request.setAttribute("pxtList", newService.makeCategoryList(pxtOwner));
-			request.getRequestDispatcher("/WEB-INF/views/users.jsp").forward(request, response);
+		//	request.setAttribute("catList", newService.makeCategoryList(pxtOwner));
+			
+			request.setAttribute("formerName", title);
+			request.setAttribute("formerDescription", description);
+			
+			request.getRequestDispatcher("/WEB-INF/views/update-category.jsp").forward(request, response);
 		}
 	}
 

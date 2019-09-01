@@ -62,7 +62,7 @@ public class AddProductServlet extends HttpServlet {
 
 		try {
 
-			Connection conn = (Connection) request.getSession().getAttribute("connect");
+			Connection conn = (Connection) request.getSession().getAttribute("sessionConnect");
 
 			PreparedStatement pst;
 
@@ -89,17 +89,17 @@ public class AddProductServlet extends HttpServlet {
 			out.print(items);
 
 			// Form entry 1 is a string (product name)
-			FileItem name = (FileItem) items.get(0); // put it a list of file
+			FileItem name = (FileItem) items.get(1); // put it a list of file
 			String pxtName = name.getString(); // convert it to string
 			out.println(pxtName);
 
 			// entry 2 String too
-			FileItem cat = (FileItem) items.get(1);
+			FileItem cat = (FileItem) items.get(2);
 			String pxtCat = cat.getString();
 			out.println(pxtCat);
 
 			// entry 3 is a file(image)
-			FileItem pxtImage = (FileItem) items.get(2); // no need for conversion
+			FileItem pxtImage = (FileItem) items.get(3); // no need for conversion
 
 			String sql = "INSERT INTO product_tbl (pxtName, owner, pxtCategory, pxtImage) VALUES(?, ?, ?, ?)";
 			pst = conn.prepareStatement(sql);

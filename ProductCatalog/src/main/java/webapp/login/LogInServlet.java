@@ -13,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
+import webapp.connect.ConnectClass;
 import webapp.products.Category;
 
 @WebServlet(urlPatterns = "/login.act")
@@ -36,6 +36,8 @@ public class LogInServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		request.getSession().setAttribute("sessionConnect", new ConnectClass().connect());
+		
 		String name = request.getParameter("userName");
 		String password = request.getParameter("password");
 		
@@ -47,7 +49,7 @@ public class LogInServlet extends HttpServlet {
 
 		try {
 
-			Connection conn = (Connection) request.getSession().getAttribute("connect");
+			Connection conn = (Connection) request.getSession().getAttribute("sessionConnect");
 
 			PreparedStatement pst;
 

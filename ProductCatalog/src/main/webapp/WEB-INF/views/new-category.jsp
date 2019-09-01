@@ -38,8 +38,8 @@
 				<tr>
 					<td>${list.catName}</td>
 					<td>${list.description}</td>
-					<td><a class="btn btn-danger" href="/delete-category.se?id=${list.catID}name=${list.catName}&description=${list.description}&owner=${list.owner}">Delete</a></td>
-					<td><a class="btn btn-success" href="/update-product.se?id=${list.catID}&name=${list.catName}&description=${list.description}&owner=${list.owner}">Update</a></td>
+					<td><a class="btn btn-danger" href="/delete-category.se?id=${list.catID}&name=${list.catName}&description=${list.description}&owner=${list.owner}">Delete</a></td>
+					<td><a class="btn btn-primary" href="/update-category.se?id=${list.catID}&name=${list.catName}&description=${list.description}&owner=${list.owner}">Update</a></td>
 										
 				</tr>
 			</c:forEach>

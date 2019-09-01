@@ -45,7 +45,7 @@ public class DeleteProductServlet extends HttpServlet {
 
 		try {
 
-			Connection conn = (Connection) request.getSession().getAttribute("connect");
+			Connection conn = (Connection) request.getSession().getAttribute("sessionConnect");
 
 			PreparedStatement pst;
 

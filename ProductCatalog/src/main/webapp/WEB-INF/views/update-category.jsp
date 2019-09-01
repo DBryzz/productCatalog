@@ -2,18 +2,18 @@
 <%@ include file="../common/session/session-navbar.jspf"%>
 
 <div class="container">
-	<form action="/update-product.se" method="post">
+	<form action="/update-category.se" method="post">
 		
 		
 		<fieldset class="form-group">
-			<label for="pxtName">Item Name:</label> <input class="form-control"
-				type="text" name="catName" value="${formerName}" placeholder="Item Name">
+			<label for="catName">Title:</label> <input class="form-control"
+				type="text" name="catName" value="${formerName}" placeholder="Category Title">
 		</fieldset>
 		
 		 
 		<fieldset class="form-group">
-			<label for="pxtCat">Item Category:</label>
-			<input class="form-control" type="text" name="catDescription" value="${formerDescription}" placeholder="user name">
+			<label for="catDescription">Description:</label>
+			<input class="form-control" type="text" name="catDescription" value="${formerDescription}" placeholder="Category Description">
 		</fieldset>
 		
 		

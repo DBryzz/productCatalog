@@ -20,7 +20,7 @@ import webapp.products.ProductService;
 /**
  * Servlet implementation class SignupServlet
  */
-@MultipartConfig(maxFileSize=16177215)
+@MultipartConfig(maxFileSize=8388608)			//16177215
 @WebServlet(urlPatterns="/update-product.se") 
 public class UpdateProductServlet extends HttpServlet {
 	
@@ -35,6 +35,8 @@ public class UpdateProductServlet extends HttpServlet {
 	 */
 	
 	private static int pxtID;
+	private static String cat;
+	private static String name;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -44,8 +46,8 @@ public class UpdateProductServlet extends HttpServlet {
 		
 		pxtID = Integer.parseInt(request.getParameter("id"));
 		//setPxtID(id);
-		String cat = request.getParameter("category");
-		String name = request.getParameter("name");
+		cat = request.getParameter("category");
+		name = request.getParameter("name");
 	//	String owner = request.getParameter("owner");
 	//	String image = request.getParameter("image");
 		
@@ -76,9 +78,9 @@ public class UpdateProductServlet extends HttpServlet {
 		String pxtOwner = (String) request.getSession().getAttribute("userName");
 		
 		//int pxtID = Integer.parseInt(request.getParameter("id"));
-		String cat = request.getParameter("category");
-		String name = request.getParameter("name");
-		String owner = request.getParameter("owner");
+	//	cat = request.getParameter("category");
+	//	name = request.getParameter("name");
+	//	String owner = request.getParameter("owner");
 	//	String image = request.getParameter("image");
 		
 		
@@ -89,7 +91,7 @@ public class UpdateProductServlet extends HttpServlet {
 
 		try {
 
-			Connection conn = (Connection) request.getSession().getAttribute("connect");
+			Connection conn = (Connection) request.getSession().getAttribute("sessionConnect");
 
 			PreparedStatement pst;
 			
@@ -110,7 +112,7 @@ public class UpdateProductServlet extends HttpServlet {
 
 			if (!result) {
 
-				System.out.println( name + " ---- "+ cat +" has been modified to \n" + pxtName + " ---- " + pxtCat +" \n and is owned by "+ owner );
+				System.out.println( name + " ---- "+ cat +" has been modified to \n" + pxtName + " ---- " + pxtCat +" \n and is owned by "+ pxtOwner );
 
 				request.setAttribute("pxtList", category.makeProductList(pxtOwner));
 

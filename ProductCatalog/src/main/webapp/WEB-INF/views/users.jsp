@@ -37,7 +37,7 @@
 							<tr>
 								<td><a class="btn btn-danger"
 									href="/delete-product.se?id=${pxt.pxtID}&name=${pxt.pxtName}&category=${pxt.pxtCategory}&owner=${pxt.pxtOwner}">Delete</a></td>
-								<td><a class="btn btn-success"
+								<td><a class="btn btn-primary"
 									href="/update-product.se?id=${pxt.pxtID}&name=${pxt.pxtName}&category=${pxt.pxtCategory}&owner=${pxt.pxtOwner}">Update</a></td>
 							</tr>
 

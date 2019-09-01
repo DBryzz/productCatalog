@@ -1,15 +1,19 @@
 <nav class="navi navbar navbar-default">
 
-		<a href="/" class="navbar-brand">Brand</a>
+	<a href="/index.html" class="navbar-brand">Home</a>
 
-		<ul class="nav navbar-nav">
-			<li class=""><a href="index.html">Home</a></li>
-			<li><a href="/add-category.se">Category</a></li>
-		</ul>
+	<ul class="nav navbar-nav">
+		<li class=""><a href="/list.se">Product</a></li>
+		<li><a href="/add-category.se">Category</a></li>
+	</ul>
 
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="/logout.se">Logout</a></li> 
-			<li><a href="/add-product.se">New Item</a></li>
-		</ul>
+	<ul class="nav navbar-nav navbar-right">
+		<li><a href="/add-product.se" class="btn btn-primary navbar-btn">New
+				Item</a></li>
+		<li>   </li>
+		<li><a href="/logout.se" class="btn btn-danger navbar-btn">Logout</a></li>
 
-	</nav>
+
+	</ul>
+
+</nav>
