@@ -1,0 +1,15 @@
+<nav class="navi navbar navbar-default">
+
+		<a href="/index.html" class="navbar-brand">Home</a>
+
+		<ul class="nav navbar-nav">
+			<!-- <li class=""><a href="/index.html">Home</a></li> -->
+			<li><a href="/list.html">categoryList</a></li>
+		</ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="/login-page.html?choice=1" class="btn btn-info navbar-btn">Login</a></li>
+			<li><a href="/signup-page.html?choice=2" class="btn btn-warning navbar-btn">Signup</a></li> 
+		</ul>
+
+	</nav>
