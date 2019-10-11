@@ -1,5 +1,8 @@
-	<footer class="footer">
+	<footer class="footer fixed-bottom">
+		<div class="footer fixed-bottom">
 		<p>footer content</p>
+		</div>
+		
 	</footer>
 
 	<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
